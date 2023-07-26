@@ -1,5 +1,8 @@
+from aiohttp import web
 import aiohttp_jinja2
 from datetime import datetime
+
+from db import message
 
 
 def get_base_context() -> dict:
@@ -22,10 +25,26 @@ async def index(request):
     return {"title": "Home"}
 
 
-@aiohttp_jinja2.template("contact.html")
-@extends
-async def contact(request):
-    return {"title": "Contact", }
+class Contact(web.View):
+
+    @aiohttp_jinja2.template("contact.html")
+    @extends
+    async def get(self):
+        return {"title": "Contact"}
+
+    @aiohttp_jinja2.template("contact.html")
+    @extends
+    async def post(self):
+        context = {"title": "Contact"}
+        data = await self.request.post()
+        try:
+            async with self.request.app['db'].acquire() as conn:
+                await conn.execute(message.insert().values(**data))
+            message_ = "(Message is sent successfully)"
+        except:
+            message_ = "(Invalid data)"
+        context.update(message=message_)
+        return context
 
 
 @aiohttp_jinja2.template("services.html")
