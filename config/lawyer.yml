@@ -1,5 +1,5 @@
 postgres:
-  database: polls
+  database: lawyer
   user: postgres
   password: password
   host: localhost
