@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="footer-section">
+	<div class="contact-header">
+	<h3> contact</h3>
+	<p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. </p>
+</div>
+<div class="contact">
+				<form>
+					<div class="col-md-4 contactgrid">
+						<input type="text" class="text" minlength="2" value=" name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = ' name';}">
+					</div>
+					<div class="col-md-4 contactgrid">
+						<input type="text" class="text" minlength="5" value="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'email';}">
+					</div>
+					<div class="col-md-4 contactgrid">
+						<input type="text" class="text" minlength="8" value="phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'phone';}">
+					</div>
+					<div class="col-md-8 contactgrid1">
+						<textarea onfocus="if(this.value == 'Your Message') this.value='';" onblur="if(this.value == '') this.value='Your Message';" >Your Message</textarea>
+					</div>
+					<div class="col-md-4 contactgrid2">
+						<input type="submit" value="[send message]">
+					</div>
+				   <div class="clearfix"></div>
+				</form>
+</div>
+</div>
+{% endblock %}

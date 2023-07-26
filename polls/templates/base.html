@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{{ title }}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Onepage Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="../static/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+<link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/js/move-top.js"></script>
+<script type="text/javascript" src="../static/js/easing.js"></script>
+ <script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+			});
+		});
+		let spans = document.getElementsByClassName("nav-span");
+		const titleLower = document.title.toLowerCase();
+		for (const span of spans) {
+			console.log(span.innerText)
+			if (span.innerText === titleLower){
+				let a = span.parentElement;
+				a.className = "active";
+			}
+		}
+
+	</script>
+</head>
+<body>
+
+{% block head %}
+<div class="header" id="head">
+      <div class="container">
+         <div class="header-top">
+      		 <div class="logo">
+				<a href="{{ url('index') }}"><img src="../static/images/logo.png" alt=""/></a>
+			 </div>
+		   <div class="top-menu">
+		   	<span class="menu"> </span>
+			<ul>
+			 	<nav class="cl-effect-5">
+				<li><a href="{{ url('index') }}"><span class="nav-span" data-hover="home">home</span></a></li>
+				<li><a href="{{ url('works') }}"><span class="nav-span" data-hover="works">works</span></a></li>
+				<li><a href="{{ url('services') }}"><span class="nav-span" data-hover="services">services</span></a></li>
+				<li><a href="{{ url('contact') }}"><span class="nav-span" data-hover="contact">contact</span></a></li>
+				</nav>
+			 </ul>
+			 </div>
+			 <!--script-nav-->
+		 <script>
+		 $("span.menu").click(function(){
+		 $(".top-menu ul").slideToggle("slow" , function(){
+		 });
+		 });
+		 </script>
+			<div class="clearfix"></div>
+		 </div>
+		  <div class="index-banner">
+       	   <div class="wmuSlider example1">
+			   <div class="wmuSliderWrapper">
+				   <article style="position: absolute; width: 100%; opacity: 0;">
+				   	<div class="banner-wrap">
+				   	       	<div class="banner_center">
+				   		 		<h1>hello world,</h1>
+				   		 		<h2>i am <span>graphic & web designer</span></h2>
+				   		 		<h2>from morocco</h2>
+				   		 		</div>
+				   		 </div>
+					</article>
+				   <article style="position: relative; width: 100%; opacity: 1;">
+				   	   	<div class="banner-wrap">
+				   	      <div class="banner_center">
+				   		 		<h1>Content here,</h1>
+				   		 		<h2>Lorem <span>graphic &  designer</span></h2>
+				   		 		<h2>Contrary</h2>
+				   		 		</div>
+				   		  </div>
+				   </article>
+				   <article style="position: absolute; width: 100%; opacity: 0;">
+				   	  	<div class="banner-wrap">
+				   	       <div class="banner_center">
+				   		 		<h1>Lorem Ipsum ,</h1>
+				   		 		<h2>Contrary to <span>&  designer</span></h2>
+				   		 		<h2>reproduced below</h2>
+				   		 		</div>
+				   		 </div>
+					 </article>
+				 </div>
+
+            </div>
+            <script src="../static/js/jquery.wmuSlider.js"></script>
+			  <script>
+       			$('.example1').wmuSlider();
+   		     </script>
+      </div>
+	 </div>
+	</div>
+{% endblock %}
+
+<div class="content">
+{% block content %}
+
+{% endblock %}
+</div>
+
+{% block footer %}
+<div class="footer-section" id="contact">
+			<div class="container">
+			<div class="footer-bottom">
+
+					<p>&copy; {{ year }}. All rights  Reserved | Web application by<a href="https://github.com/michael7nightingale/" target="target_blank">michael7nightingale</a></p>
+
+					</div>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear'
+					 		};
+							*/
+
+							$().UItoTop({ easingType: 'easeOutQuart' });
+
+						});
+					</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+</div>
+
+		</div>
+{% endblock %}
+
+
+</body>
+</html>
