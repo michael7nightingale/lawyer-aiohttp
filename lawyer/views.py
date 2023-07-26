@@ -3,6 +3,7 @@ import aiohttp_jinja2
 from datetime import datetime
 
 from services import MessageService
+from email_ import build_message, build_body
 
 
 def get_base_context() -> dict:
@@ -37,12 +38,31 @@ class Contact(web.View):
     async def post(self):
         context = {"title": "Contact"}
         data = await self.request.post()
-        try:
-            await MessageService(self.request.app['db']).create_message(**data)
-            message_ = "(Message is sent successfully)"
-        except Exception:
-            message_ = "(Invalid data)"
-        context.update(message=message_)
+        await MessageService(self.request.app['db']).create_message(**data)
+        email = data['email']
+        name = data['name']
+        phone = data['phone']
+        text = data['text']
+        to_addr = self.request.app['config']['smtp']['messages_email']
+        from_addr = self.request.app['config']['smtp']['user']
+        email_body = build_body(
+            email=email,
+            name=name,
+            phone=phone,
+            text=text
+        )
+        email_message = build_message(
+            subject="New problem.",
+            from_addr=email,
+            body=email_body
+        )
+        self.request.app['smtp_server'].sendmail(
+            from_addr=from_addr,
+            to_addrs=[to_addr],
+            msg=email_message
+        )
+        message = "(Message is sent successfully)"
+        context.update(message=message)
         return context
 
 
