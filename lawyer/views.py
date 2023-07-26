@@ -2,7 +2,7 @@ from aiohttp import web
 import aiohttp_jinja2
 from datetime import datetime
 
-from db import message
+from services import MessageService
 
 
 def get_base_context() -> dict:
@@ -38,10 +38,9 @@ class Contact(web.View):
         context = {"title": "Contact"}
         data = await self.request.post()
         try:
-            async with self.request.app['db'].acquire() as conn:
-                await conn.execute(message.insert().values(**data))
+            await MessageService(self.request.app['db']).create_message(**data)
             message_ = "(Message is sent successfully)"
-        except:
+        except Exception:
             message_ = "(Invalid data)"
         context.update(message=message_)
         return context
