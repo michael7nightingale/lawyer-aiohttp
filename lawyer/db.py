@@ -6,7 +6,7 @@ import aiopg.sa
 
 meta = MetaData()
 
-message = Table(
+Message = Table(
     "message", meta,
     Column('id', String(255), primary_key=True, default=lambda: str(uuid4())),
     Column("name", String(255), nullable=False),
@@ -18,8 +18,8 @@ message = Table(
 
 
 async def pg_context(app):
-    conf = app['config']['postgres']
-    engine = await aiopg.sa.create_engine(**conf)
+    configuration = app['config']['postgres']
+    engine = await aiopg.sa.create_engine(**configuration)
     app['db'] = engine
 
     yield
