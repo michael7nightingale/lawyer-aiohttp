@@ -6,3 +6,10 @@ postgres:
   port: 5432
   minsize: 1
   maxsize: 5
+
+smtp:
+  host: smtp.gmail.com
+  port: 465
+  user: suslanchikmopl@gmail.com
+  password: llpbevnrgttpjmfj
+  messages_email: suslanchikmopl@gmail.com
